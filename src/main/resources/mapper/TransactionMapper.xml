@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wz.mapper.TransactionMapper">
+
+    <insert id="addTransaction" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            transaction(wallet_id,amount,type,created_at)
+        values(#{walletId},#{amount},#{type},#{createdAt})
+    </insert>
+
+    <select id="getTransactions" resultType="com.wz.entity.Transaction">
+        select
+            id,
+            wallet_id,
+            amount,
+            type,
+            created_at
+        from
+            transaction
+        where
+            wallet_id = #{walletId}
+    </select>
+</mapper>
